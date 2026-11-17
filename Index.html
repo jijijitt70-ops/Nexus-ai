@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS AI</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#09090f;
+ color:white;
+ font-family:Arial,sans-serif;
+ height:100vh;
+ display:flex;
+ flex-direction:column;
+}
+header{
+ padding:20px;
+ background:#11111c;
+ border-bottom:1px solid #29283b;
+ display:flex;
+ align-items:center;
+ gap:12px;
+}
+.logo{
+ width:40px;height:40px;
+ border-radius:12px;
+ background:linear-gradient(135deg,#873cff,#24c8ff);
+ display:grid;place-items:center;
+ font-weight:bold;font-size:20px;
+}
+header h2{margin:0;font-size:19px}
+header small{color:#9c9bb0}
+#chat{
+ flex:1;overflow-y:auto;
+ padding:18px;
+ display:flex;flex-direction:column;gap:15px;
+}
+.message{
+ max-width:85%;
+ padding:13px 16px;
+ border-radius:15px;
+ line-height:1.5;
+ white-space:pre-wrap;
+}
+.bot{background:#191927;align-self:flex-start}
+.user{background:#6339d9;align-self:flex-end}
+footer{
+ padding:15px;
+ display:flex;gap:9px;
+ background:#11111c;
+}
+input{
+ flex:1;min-width:0;
+ padding:14px;border-radius:12px;
+ border:1px solid #333348;
+ background:#1a1a29;color:white;
+ outline:none;
+}
+button{
+ border:0;border-radius:12px;
+ background:#7546ed;color:white;
+ padding:0 19px;font-weight:bold;
+}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">N</div>
+ <div>
+  <h2>NEXUS AI</h2>
+  <small>Asistente inteligente</small>
+ </div>
+</header>
+<main id="chat">
+ <div class="message bot">
+  Hola. Soy NEXUS AI.
+  Estoy preparado para ayudarte.
+ </div>
+</main>
+<footer>
+ <input id="prompt" placeholder="Escribe un mensaje...">
+ <button onclick="send()">Enviar</button>
+</footer>
+<script>
+function send(){
+ const input=document.getElementById('prompt');
+ const value=input.value.trim();
+ if(!value)return;
+ const chat=document.getElementById('chat');
+ const msg=document.createElement('div');
+ msg.className='message user';
+ msg.textContent=value;
+ chat.appendChild(msg);
+ input.value='';
+ chat.scrollTop=chat.scrollHeight;
+}
+document.getElementById('prompt').addEventListener('keydown',e=>{
+ if(e.key==='Enter')send();
+});
+</script>
+</body>
+</html>
